@@ -15,7 +15,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView tv = findViewById(R.id.textView);
+        sharedPreferences = getSharedPreferences(MYSHAREDPREF, MODE_PRIVATE);
+        String name = "Nikhil";
+        int age = 23;
+        String gender = "Male";
 
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("NAME", name);
+        editor.putInt("AGE", age);
+        editor.putString("GENDER", gender);
+        editor.commit();
+
+        String nameShare = sharedPreferences.getString("NAME", "NONAME");
+        int agee = sharedPreferences.getInt("AGE", 0);
+        tv.setText("Name is " + nameShare + " and Age is " + agee);
 
     }
 }
